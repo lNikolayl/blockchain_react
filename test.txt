@@ -1,0 +1,26 @@
+[
+	{
+		"blockName": "Header",
+		"blockFields": [
+			{"fieldName": "name1", "fieldValue": "value"},
+			{"fieldName": "name2", "fieldValue": "value"},
+			{"fieldName": "name3", "fieldValue": "value"}
+		]
+	},
+	{
+		"blockName": "Body",
+		"blockFields": [
+			{"fieldName": "name4", "fieldValue": "value"},
+			{"fieldName": "name5", "fieldValue": "value"},
+			{"fieldName": "name6", "fieldValue": "value"}
+		]
+	},
+	{
+		"blockName": "Footer",
+		"blockFields": [
+			{"fieldName": "name7", "fieldValue": "value"},
+			{"fieldName": "name8", "fieldValue": "value"},
+			{"fieldName": "name9", "fieldValue": "value"}
+		]
+	}
+]

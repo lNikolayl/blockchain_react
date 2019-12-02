@@ -34,7 +34,7 @@ class Container extends React.Component{
   render(){
     return (
 
-      <Tabs defaultActiveKey="load" id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey="create" id="uncontrolled-tab-example">
         <Tab eventKey="load" title="Load document">
           <LoadDocument />
         </Tab>

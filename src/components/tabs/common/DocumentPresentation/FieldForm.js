@@ -20,13 +20,13 @@ class FieldForm extends React.Component{
 					Field name:
 				</Form.Label>
 				<Col sm="2">
-					<Form.Control disabled={this.props.disabled} value={this.props.data.fieldName} type="text" as="input" placeholder="Type field name..."/>
+					<Form.Control onChange={(name)=>{this.props.changeFieldName(this.props.blockIndex, this.props.fieldIndex, name)}}disabled={this.props.disabled} value={this.props.data.fieldName} type="text" as="input" placeholder="Type field name..."/>
 				</Col>
 				<Form.Label column sm="0">
 					Field type:
 				</Form.Label>
 				<Col sm="2">
-					<Form.Control disabled={this.props.disabled} value={this.props.data.fieldValue} type="text" as="input" placeholder="Type filed value..."/>
+					<Form.Control onChange={(value)=>{this.props.changeFieldValue(this.props.blockIndex, this.props.fieldIndex, value)}} disabled={this.props.disabled} value={this.props.data.fieldValue} type="text" as="input" placeholder="Type filed value..."/>
 				</Col>
 				<Col sm="2">
 					<Button variant="primary" onClick={()=>{this.props.removeField(this.props.fieldIndex,this.props.blockIndex)}}>Remove</Button>

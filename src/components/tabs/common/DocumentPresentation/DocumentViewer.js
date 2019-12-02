@@ -46,6 +46,33 @@ class DocumentViwer extends React.Component{
 			data: data
 		});
 	}
+	changeFieldName = (blockIndex,fieldIndex,name) =>{
+		let data = this.state.data;
+		data[blockIndex].blockFields[fieldIndex].fieldName=name.target.value;
+		this.setState({
+			data: data
+		})
+	}
+
+	changeFieldValue = (blockIndex,fieldIndex,value) =>{
+		let data = this.state.data;
+		data[blockIndex].blockFields[fieldIndex].fieldValue=value.target.value;
+		this.setState({
+			data: data
+		})
+	}
+	
+	saving =()=>{
+		let firstArray =[];
+		this.state.data.forEach((item)=>{
+			let secondArray = [];
+			item.blockFields.forEach((el)=>{
+				secondArray.push([el.fieldName,el.fieldValue])
+			});
+			firstArray.push(secondArray);
+		});
+		console.log(firstArray);
+	}
 
   render(){
     return (
@@ -66,7 +93,7 @@ class DocumentViwer extends React.Component{
 										)}									
 										{item.blockFields.map((field, fieldIndex)=>{
 											return (
-												<FieldForm removeField={this.removeField} fieldIndex={fieldIndex} blockIndex={blockIndex} data={field} disabled={this.props.isLoaded ? true : false}/>												
+												<FieldForm changeFieldValue={this.changeFieldValue} changeFieldName={this.changeFieldName} removeField={this.removeField} fieldIndex={fieldIndex} blockIndex={blockIndex} data={field} disabled={this.props.isLoaded ? true : false}/>												
 											)
 										})}
 									</Card.Body>
@@ -75,7 +102,7 @@ class DocumentViwer extends React.Component{
 						)
 					})}					
 				</Accordion> 
-				<Button variant="primary">Save</Button>				
+				<Button onClick={()=>{this.saving()}} variant="primary">Save</Button>				
 			</>     
     );
   }

@@ -23,7 +23,7 @@ class FieldForm extends React.Component{
 					<Form.Control onChange={(name)=>{this.props.changeFieldName(this.props.blockIndex, this.props.fieldIndex, name)}}disabled={this.props.disabled} value={this.props.data.fieldName} type="text" as="input" placeholder="Type field name..."/>
 				</Col>
 				<Form.Label column sm="0">
-					Field type:
+					Field value:
 				</Form.Label>
 				<Col sm="2">
 					<Form.Control onChange={(value)=>{this.props.changeFieldValue(this.props.blockIndex, this.props.fieldIndex, value)}} disabled={this.props.disabled} value={this.props.data.fieldValue} type="text" as="input" placeholder="Type filed value..."/>

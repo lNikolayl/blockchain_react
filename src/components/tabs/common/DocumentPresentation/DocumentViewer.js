@@ -3,11 +3,15 @@ import 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Accordion, Card, Button, Form} from 'react-bootstrap';
 import FieldForm from './FieldForm';
-
+import {contract_address, contract_abi} from '../../../../config.js'
+import Web3 from 'web3'
+import Eth from 'web3-eth'
 //import Form from './components/tabs/common/Form';
 
 class DocumentViwer extends React.Component{
   state = {
+		account: '',
+	//	tasks: "",
 		data: [
 			{
 				"blockName": "Header",
@@ -23,7 +27,10 @@ class DocumentViwer extends React.Component{
 			}
 		]
 	} 
-	
+	componentWillMount () {
+		this.loadData()
+	}
+
 	componentDidMount () {
 		if(this.props.data) {
 			this.setState({data: this.props.data})
@@ -61,7 +68,16 @@ class DocumentViwer extends React.Component{
 			data: data
 		})
 	}
+	async loadData(){
+		const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
+		const accounts = await web3.eth.getAccounts()
+		this.setState({account: accounts[0]})
+		const documents =  new web3.eth.Contract (contract_abi, contract_address)
+		this.setState({documents})
 	
+		//this.setState({tasks: task})
+		console.log(documents);
+	}
 	saving =()=>{
 		let firstArray =[];
 		this.state.data.forEach((item)=>{
@@ -71,6 +87,13 @@ class DocumentViwer extends React.Component{
 			});
 			firstArray.push(secondArray);
 		});
+		//loadData();
+		const task = this.state.documents.methods.createDoc(firstArray).send({from: this.state.account, gas:1000000}).then((res)=>{
+			this.state.documents.methods.get(0).call().then((doc)=>{
+				console.log(doc)
+			})
+		})
+		console.log(task);
 		console.log(firstArray);
 	}
 

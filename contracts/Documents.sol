@@ -1,4 +1,4 @@
-pragma solidity 0.5.8;
+pragma solidity 0.5.12;
 pragma experimental ABIEncoderV2;
 
 // Document:{
@@ -20,6 +20,10 @@ pragma experimental ABIEncoderV2;
 // }
 
 contract Documents {
+    
+    function get(uint index) public view returns(Document memory){
+        return documents[index];
+    }
 
     // Model a Candidate
     struct Field {
@@ -42,7 +46,7 @@ contract Documents {
         Field[] footer;
     }
 
-    uint private documentsCount;
+    uint public documentsCount;
 
     // Document[] private documents;
     
@@ -78,13 +82,13 @@ contract Documents {
         for(uint i = 0; i<header.length; i++){
             documents[documentsCount].header.push(header[i]);
         }
-        Field[] memory body = Field[](data.header);
+        Field[] memory body = Field[](data.body);
         for(uint i = 0; i<body.length; i++){
-            documents[documentsCount].header.push(body[i]);
+            documents[documentsCount].body.push(body[i]);
         }
-        Field[] memory footer = Field[](data.header);
+        Field[] memory footer = Field[](data.footer);
         for(uint i = 0; i<footer.length; i++){
-            documents[documentsCount].header.push(footer[i]);
+            documents[documentsCount].footer.push(footer[i]);
         }
         documentsCount++;        
     }
